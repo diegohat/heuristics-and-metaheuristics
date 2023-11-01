@@ -23,11 +23,14 @@ def solver(problem, rng, cb):
             solution, obj = ns[0].find_any(problem, solution, obj, rng)
         return solution, obj
 
-#   solution, obj = tsp.random_heuristic(problem, rng)
+#    solution, obj = tsp.random_heuristic(problem, rng)
     solution, obj = tsp.farthest_insertion_heuristic(problem, 1)
 
 #   solution, obj = mh.ils(problem, local_search, perturbation, solution, obj, rng=rng, cb=cb)
-    solution, obj = mh.simulated_anneling(problem, solution, ns[0], 10000, 0.95, 100, rng, cb=cb)
+
+#   solution, obj = mh.simulated_anneling(problem, solution, ns[0], 10000, 0.95, 100, rng=rng, cb=cb)
+
+    solution, obj = mh.multithread_simulated_anneling(problem, solution, ns[0], 10000, 0.95, 100, threads=6, rng=rng, cb=cb)
 
 
 # -------------------------------------------------------------------
